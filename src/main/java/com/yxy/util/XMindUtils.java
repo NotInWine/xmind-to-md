@@ -1,4 +1,4 @@
-package com.yxy.xmind.util;
+package com.yxy.util;
 
 import org.xmind.core.*;
 
