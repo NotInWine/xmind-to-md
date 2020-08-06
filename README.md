@@ -8,12 +8,11 @@ XMind思维导图转Markdown文本
 - 原始脑图
 ![image](src/main/resources/pos.png)
 ## Demo
-[Deom](src/main/java/com/yxy/xmind/demo/Main.java)
+[Deom](src/main/java/com/yxy/demo/Main.java)
 ```java
-package com.yxy.xmind.demo;
+package com.yxy.demo;
 
-import com.yxy.xmind.to.md.ToMdUtils;
-
+import com.yxy.to.md.XMindToMdUtils;
 import java.io.IOException;
 
 public class Main {
@@ -22,8 +21,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        String filePath = "C:\\Users\\yangchao\\Downloads\\Redis-test.xmind";
-        ToMdUtils.toMD(filePath, i -> System.out.print(i.toString()));
+        XMindToMdUtils.getInstance().toMD(
+                // xmind 文件位置
+                "C:\\Users\\yangchao\\Downloads\\Redis-test.xmind",
+                // 打印
+                i -> System.out.print(i.toString())
+        );
     }
 }
 ```
