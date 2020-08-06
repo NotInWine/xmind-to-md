@@ -1,7 +1,6 @@
 package com.yxy.to.md;
 
 import com.yxy.to.md.core.AbstractToMD;
-import com.yxy.to.md.core.TextType;
 import com.yxy.util.XMindUtils;
 import org.codehaus.plexus.util.StringUtils;
 import org.xmind.core.ITopic;
@@ -50,17 +49,13 @@ public class XMindToMdUtils extends AbstractToMD {
             // 获得MD语法
             GetTop get = new GetTop(level, titleText).invoke();
 
+            // 处理超连接
             String hyperlink = iTopic.getHyperlink();
             setLink(hyperlink, get);
 
             StringBuilder str = new StringBuilder();
-            if (get.getTextType() == TextType.TITLE && level > 0) {
-                // 跟上一行保持距离
-                str.append("\n");
-            }
-
             // 处理标题
-            addThis(get, str);
+            addThis(get, str, level);
 
             // 处理 Labels
             Set<String> labels = iTopic.getLabels();

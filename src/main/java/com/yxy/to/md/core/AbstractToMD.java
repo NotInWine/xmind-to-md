@@ -21,7 +21,12 @@ public abstract class AbstractToMD {
         }
     }
 
-    protected void addThis(GetTop get, StringBuilder str) {
+    protected void addThis(GetTop get, StringBuilder str, int level) {
+        if (get.getTextType() == TextType.TITLE && level > 0) {
+            // 跟上一行保持距离
+            str.append("\n");
+        }
+
         for (String t : get.getTitle().split("\n")) {
             if (t.trim().length() == 0) {
                 continue;
