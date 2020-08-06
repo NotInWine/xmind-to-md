@@ -1,9 +1,10 @@
 # XMind To Markdown
 XMind思维导图转Markdown文本
 ## 效果
+- 效果图1
+![image](src/main/resources/x1.png)
 - 效果图
 ![image](src/main/resources/mdcode.png)
-
 - 原始脑图
 ![image](src/main/resources/pos.png)
 ## Demo
