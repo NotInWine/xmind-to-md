@@ -1,4 +1,4 @@
-package com.yxy.to.md;
+package com.yxy.to.md.core;
 
 import java.util.Set;
 
@@ -49,7 +49,7 @@ public abstract class AbstractToMD {
         private StringBuilder end = new StringBuilder();
         private TextType textType;
 
-        protected GetTop(int level, String title) {
+        public GetTop(int level, String title) {
             this.level = level;
             this.title = title;
         }
@@ -66,11 +66,11 @@ public abstract class AbstractToMD {
             return against;
         }
 
-        StringBuilder getGrammar() {
+        public StringBuilder getGrammar() {
             return grammar;
         }
 
-        StringBuilder getEnd() {
+        public StringBuilder getEnd() {
             return end;
         }
 
@@ -78,7 +78,7 @@ public abstract class AbstractToMD {
             return title;
         }
 
-        GetTop invoke() {
+        public GetTop invoke() {
             int maxLevel = 3;
             if (level < maxLevel) {
                 // 标题

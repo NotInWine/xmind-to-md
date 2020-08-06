@@ -1,5 +1,7 @@
 package com.yxy.to.md;
 
+import com.yxy.to.md.core.AbstractToMD;
+import com.yxy.to.md.core.TextType;
 import com.yxy.util.XMindUtils;
 import org.codehaus.plexus.util.StringUtils;
 import org.xmind.core.ITopic;
