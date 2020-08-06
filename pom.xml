@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yxy.xmind.to.md</groupId>
+    <artifactId>xmind-to-md</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>xmind-to-md</name>
+    <description></description>
+
+    <!-- 定义全局变量 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <skipTests>true</skipTests> <!-- 跳过测试 -->
+    </properties>
+
+
+    <dependencies>
+        <!--XMind 解析-->
+        <dependency>
+            <groupId>com.github.eljah</groupId>
+            <artifactId>xmindjbehaveplugin</artifactId>
+            <version>0.8</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
