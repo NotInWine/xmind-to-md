@@ -2,11 +2,11 @@
 XMind思维导图转Markdown文本
 ## 效果
 - 效果图1
-![image](src/main/resources/x1.png)
+![image](https://yxyu.oss-cn-beijing.aliyuncs.com/open/tomd/x1.png)
 - 效果图
-![image](src/main/resources/mdcode.png)
+![image](https://yxyu.oss-cn-beijing.aliyuncs.com/open/mdcode.png)
 - 原始脑图
-![image](src/main/resources/pos.png)
+![image](https://yxyu.oss-cn-beijing.aliyuncs.com/open/tomd/pos.png)
 ## Demo
 [Deom](src/main/java/com/yxy/demo/Main.java)
 ```java
