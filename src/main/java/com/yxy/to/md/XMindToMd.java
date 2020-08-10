@@ -15,15 +15,15 @@ import java.util.function.Consumer;
  *
  * @author yangchao
  */
-public class XMindToMdUtils extends AbstractToMD {
+public class XMindToMd extends AbstractToMD implements ToMdInterface {
 
-    private static XMindToMdUtils toMdUtils = new XMindToMdUtils();
+    private static final XMindToMd TO_MD_UTILS = new XMindToMd();
 
-    private XMindToMdUtils() {
+    private XMindToMd() {
     }
 
-    public static XMindToMdUtils getInstance() {
-        return toMdUtils;
+    protected static XMindToMd getInstance() {
+        return TO_MD_UTILS;
     }
 
     /**
@@ -31,6 +31,7 @@ public class XMindToMdUtils extends AbstractToMD {
      * @param stringBuilderConsumer 处理响应的函数 （注意会多次调用）
      * @throws IOException
      */
+    @Override
     public void toMD(String filePath, Consumer<StringBuilder> stringBuilderConsumer) throws IOException {
         File file = new File(filePath);
         String unPath = com.util.ZipUtils.unZipFiles(file, file.getParentFile().getPath() + "/");
