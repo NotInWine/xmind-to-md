@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 
 /**
  * 工具类
+ *
  * @author yangchao
  */
 public class XMindToMdUtils extends AbstractToMD {
@@ -26,21 +27,48 @@ public class XMindToMdUtils extends AbstractToMD {
     }
 
     /**
-     *
-     * @param filePath .xmind 文件位置
+     * @param filePath              .xmind 文件位置
      * @param stringBuilderConsumer 处理响应的函数 （注意会多次调用）
      * @throws IOException
      */
     public void toMD(String filePath, Consumer<StringBuilder> stringBuilderConsumer) throws IOException {
         File file = new File(filePath);
-        String unPath = com.util.ZipUtils.unZipFiles(file, file.getParentFile().getPath());
-        ITopic iTopic = XMindUtils.readRootTopic(unPath);
-        if (iTopic == null) {
-            System.out.println("Read error.");
-            return;
+        String unPath = com.util.ZipUtils.unZipFiles(file, file.getParentFile().getPath() + "/");
+        try {
+            ITopic iTopic = XMindUtils.readRootTopic(unPath);
+            if (iTopic == null) {
+                System.out.println("Read error.");
+                return;
+            }
+
+            iTopicToString(iTopic, 0, stringBuilderConsumer);
+        } finally {
+            deleteFile(new File(unPath));
+        }
+    }
+
+    /**
+     * 先根遍历序递归删除文件夹
+     *
+     * @param dirFile 要被删除的文件或者目录
+     * @return 删除成功返回true, 否则返回false
+     */
+    private static boolean deleteFile(File dirFile) {
+        // 如果dir对应的文件不存在，则退出
+        if (!dirFile.exists()) {
+            return false;
         }
 
-        iTopicToString(iTopic, 0, stringBuilderConsumer);
+        if (dirFile.isFile()) {
+            return dirFile.delete();
+        } else {
+
+            for (File file : dirFile.listFiles()) {
+                deleteFile(file);
+            }
+        }
+
+        return dirFile.delete();
     }
 
     private void iTopicToString(ITopic iTopic, int level, Consumer<StringBuilder> consumer) {

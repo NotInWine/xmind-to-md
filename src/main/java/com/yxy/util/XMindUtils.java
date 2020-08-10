@@ -27,8 +27,16 @@ public class XMindUtils {
         if (workbook == null) {
             return null;
         }
-        ISheet defSheet = workbook.getPrimarySheet();//获取主Sheet
-        ITopic rootTopic = defSheet.getRootTopic();//获取根Topic
+
+        ITopic rootTopic = null;//获取根Topic
+        try {
+            ISheet defSheet = workbook.getPrimarySheet();//获取主Sheet
+            rootTopic = defSheet.getRootTopic();
+        } finally {
+            if (rootTopic != null) {
+                workbook.cloneTopic(rootTopic);
+            }
+        }
         return rootTopic;
     }
 }
