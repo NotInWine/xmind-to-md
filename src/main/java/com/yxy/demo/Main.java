@@ -1,6 +1,7 @@
 package com.yxy.demo;
 
-import com.yxy.to.md.XMindToMd;
+import com.yxy.to.md.ToMdUtils;
+
 import java.io.IOException;
 
 public class Main {
@@ -9,10 +10,15 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        XMindToMd.getInstance().toMD(
-                // xmind 文件位置
+        // xmind
+        ToMdUtils.toMD(
                 "C:\\Users\\yangchao\\Downloads\\Redis-test.xmind",
-                // 打印
+                i -> System.out.print(i.toString())
+        );
+
+        // pos
+        ToMdUtils.toMD(
+                "C:\\Users\\yangchao\\Downloads\\Redis.pos",
                 i -> System.out.print(i.toString())
         );
     }

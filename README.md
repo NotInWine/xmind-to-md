@@ -1,5 +1,6 @@
 # XMind To Markdown
-XMind思维导图转Markdown文本
+1. XMind思维导图转Markdown文本
+2. [Processon](https://www.processon.com/;jsessionid=779C56220415B43892F9C36E2CB82E9C.jvm1)思维导图转Markdown文本
 ## 效果
 - 效果图1
 ![image](src/main/resources/x1.png)
@@ -21,10 +22,15 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        XMindToMd.getInstance().toMD(
-                // xmind 文件位置
+        // xmind
+        ToMdUtils.toMD(
                 "C:\\Users\\yangchao\\Downloads\\Redis-test.xmind",
-                // 打印
+                i -> System.out.print(i.toString())
+        );
+
+        // pos
+        ToMdUtils.toMD(
+                "C:\\Users\\yangchao\\Downloads\\Redis.pos",
                 i -> System.out.print(i.toString())
         );
     }
@@ -37,7 +43,7 @@ public class Main {
 - 多行主题转列表
 - 标签（Labels）
 
-## 限制
+## 限制(Xmind)
 1. 需要有文件目录的写权限  
     *因为需要解压XMind文件读取内部xml*
 2. 暂时不支持读取remark  
