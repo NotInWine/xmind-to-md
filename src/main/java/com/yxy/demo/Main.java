@@ -12,13 +12,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         // xmind
         ToMdUtils.toMD(
-                "C:\\Users\\yangchao\\Downloads\\Redis-test.xmind",
+                "C:\\Users\\xxx\\Downloads\\Redis-test.xmind",
                 i -> System.out.print(i.toString())
         );
 
         // pos
         ToMdUtils.toMD(
-                "C:\\Users\\yangchao\\Downloads\\Redis.pos",
+                "C:\\Users\\xxx\\Downloads\\Redis.pos",
                 i -> System.out.print(i.toString())
         );
     }
