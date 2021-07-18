@@ -8,7 +8,10 @@ import org.codehaus.plexus.util.IOUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * 工具类
@@ -64,35 +67,50 @@ public class PosToMd extends AbstractToMD implements ToMdInterface {
         return dirFile.delete();
     }
 
-    private void jsonNodeToString(JsonNode jsonNode, int level, Consumer<StringBuilder> consumer) {
-        /*if (level == 0) {
-            jsonNode = jsonNode.get("diagram").get("elements");
+    private void jsonNodeToString(JsonNode children, int level, Consumer<StringBuilder> consumer) {
+        if (level == 0) {
+            children = children.get("diagram").get("elements");
         }
-        String titleText = jsonNode.get("diagram").get("");
-        if (StringUtils.isNotBlank(titleText.trim())) {
+
+        if (children != null) {
+
+            String titleText = children.get("title").asText();
             // 获得MD语法
             GetTop get = new GetTop(level, titleText).invoke();
 
             // 处理超连接
-            String hyperlink = iTopic.getHyperlink();
-            setLink(hyperlink, get);
+            Optional.ofNullable(children.get("link"))
+                    .ifPresent(link -> setLink(link.get("value").asText(), get));
 
             StringBuilder str = new StringBuilder();
             // 处理标题
             addThis(get, str, level);
 
-            // 处理 Labels
-            Set<String> labels = iTopic.getLabels();
-            addLabels(labels, get, str);
+            // 处理 Labels"
+            Optional.ofNullable(children.get("tags"))
+                    .ifPresent(tags -> {
+                        Set<String> labels = tags.findValues("text").stream().map(JsonNode::asText).collect(Collectors.toSet());
+                        addLabels(labels, get, str);
+                    });
 
             // 处理图片
-            String source = iTopic.getImage().getSource();
-            addImage(source, str);
+            Optional.ofNullable(children.get("image")).ifPresent(image -> {
+                addImage(image.get("url").asText(), str);
+            });
 
             // 调用处理函数
             consumer.accept(str);
+
+
+            Optional.ofNullable(children.get("leftChildren")).ifPresent(items ->
+                    items.forEach(item -> {
+                        jsonNodeToString(item, level + 1, consumer);
+                    }));
+
+            // 递归
+            children.get("children").forEach(item -> {
+                jsonNodeToString(item, level + 1, consumer);
+            });
         }
-        // 递归
-        iTopic.getAllChildren().forEach(i -> jsonNodeToString(i, level + 1, consumer));*/
     }
 }

@@ -1,6 +1,8 @@
 # XMind To Markdown
 1. XMind思维导图转Markdown文本
-2. [Processon](https://www.processon.com/;jsessionid=779C56220415B43892F9C36E2CB82E9C.jvm1)思维导图转Markdown文本
+2. [Processon的.pos格式](https://www.processon.com/;jsessionid=779C56220415B43892F9C36E2CB82E9C.jvm1) 思维导图转Markdown文本
+
+建议使用第二种方式。解析XMind使用的xmindjbehaveplugin组件暂时不支持最新版本文件的格式
 ## 效果
 - 效果图1
 ![image](src/main/resources/x1.png)
